@@ -1,26 +1,11 @@
-# Задание 3. Банковский вклад (Расчет процентов по карте)
-# Используем decimal для точности финансовых расчетов
+# Запрашиваем номер карты (16 цифр)
+card_number = input("Введите номер карты (16 цифр): ")
 
-from decimal import Decimal, ROUND_HALF_UP
+# Извлекаем последние 4 цифры
+last_four = card_number[12:16]  # или card_number[-4:]
 
-# 1. Запрашиваем данные у пользователя
-# Мы запрашиваем сумму и процент как текст и переводим в Decimal
-amount_input = input("Введите текущую сумму на карте: ")
-percent_input = input("Введите годовой процент (например, 10): ")
+# Формируем замаскированный номер
+masked_number = f"**** **** **** {last_four}"
 
-amount = Decimal(amount_input)
-percent = Decimal(percent_input)
-
-# 2. Вычисляем сумму процентов (Сумма * Процент / 100)
-interest = (amount * percent) / Decimal("100")
-
-# 3. Итоговая сумма = исходная сумма + проценты
-total = amount + interest
-
-# 4. Округляем до 2 знаков после запятой (копейки/копейки)
-final_total = total.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
-
-# 5. Вывод результата
-print(f"Исходная сумма: {amount} руб.")
-print(f"Процентная ставка: {percent}%")
-print(f"Итоговая сумма через год: {final_total} руб.")
+# Выводим результат
+print(masked_number)
