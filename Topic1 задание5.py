@@ -8,6 +8,5 @@ delivery = {"яблоки": 50, "бананы": 30, "груши": 20}
 inventory.update(delivery)
 
 # Выводим обновленный словарь
-print("Обновленный инвентарь:")
-for product, quantity in inventory.items():
-    print(f"{product}: {quantity}")
+print(inventory)
+
