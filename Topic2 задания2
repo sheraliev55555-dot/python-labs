@@ -1,0 +1,18 @@
+purchase_amount = float(input("Введите сумму покупки: "))
+
+if purchase_amount < 0:
+    print("Сумма не может быть отрицательной.")
+else:
+    if purchase_amount < 1000:
+        discount = 0
+    elif purchase_amount < 3000:
+        discount = 5
+    elif purchase_amount < 5000:
+        discount = 10
+    else:
+        discount = 15
+    
+    final_amount = purchase_amount * (1 - discount / 100)
+    
+    print(f"Скидка: {discount}%")
+    print(f"Итоговая сумма: {final_amount:.2f} руб.")
