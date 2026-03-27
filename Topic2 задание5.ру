@@ -1,0 +1,39 @@
+print("Введите команду (exit для выхода):")
+while True:
+    command = input(">> ")
+    match command.split():
+        case ["hello"]:
+            print("Привет, мир!")
+        case ["hello", name]:
+            print(f"Привет, {name}!")
+        case ["add", x, y]:
+            try:
+                print(f"Сумма: {float(x) + float(y)}")
+            except ValueError:
+                print("Ошибка: x и y должны быть числами")
+        case ["sub", x, y]:
+            try:
+                print(f"Разность: {float(x) - float(y)}")
+            except ValueError:
+                print("Ошибка: x и y должны быть числами")
+        case ["mult", x, y]:
+            try:
+                print(f"Произведение: {float(x) * float(y)}")
+            except ValueError:
+                print("Ошибка: x и y должны быть числами")
+        case ["div", x, y]:
+            try:
+                if float(y) == 0:
+                    print("Ошибка: деление на ноль")
+                else:
+                    print(f"Частное: {float(x) / float(y)}")
+            except ValueError:
+                print("Ошибка: x и y должны быть числами")
+        case ["info"]:
+            print("Программа-интерпретатор команд")
+            print("Доступные команды: hello, hello <имя>, add <x> <y>, sub <x> <y>, mult <x> <y>, div <x> <y>, info, exit")
+        case ["exit"]:
+            print("Программа завершена.")
+            break
+        case _:
+            print("Неизвестная команда")
