@@ -1,0 +1,18 @@
+try:
+    a = float(input("Введите сторону a: "))
+    b = float(input("Введите сторону b: "))
+    c = float(input("Введите сторону c: "))
+    
+    if a <= 0 or b <= 0 or c <= 0:
+        print("Стороны должны быть положительными числами")
+    elif a + b > c and a + c > b and b + c > a:
+        if a == b == c:
+            print("Тип треугольника: равносторонний")
+        elif a == b or a == c or b == c:
+            print("Тип треугольника: равнобедренный")
+        else:
+            print("Тип треугольника: разносторонний")
+    else:
+        print("Треугольник не существует")
+except ValueError:
+    print("Ошибка: введите числа")
