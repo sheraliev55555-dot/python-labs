@@ -1,0 +1,12 @@
+
+num = int(input("Введите число: "))
+divisors = []
+i = 2
+while i < num:
+    if num % i == 0:
+        divisors.append(i)
+    i += 1
+if divisors:
+    print(f"Делители числа {num}: {', '.join(map(str, divisors))}")
+else:
+    print(f"Число {num} является простым")
