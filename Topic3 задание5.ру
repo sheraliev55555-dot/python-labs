@@ -1,0 +1,26 @@
+
+input_list = list(map(int, input("Исходный список: ").strip('[]').split(', ')))
+direction = input("Направление: ").strip()
+positions = int(input("Позиций: "))
+
+n = len(input_list)
+positions %= n
+
+if direction == "влево":
+    for _ in range(positions):
+        first = input_list[0]
+        i = 0
+        while i < n - 1:
+            input_list[i] = input_list[i + 1]
+            i += 1
+        input_list[n - 1] = first
+elif direction == "вправо":
+    for _ in range(positions):
+        last = input_list[n - 1]
+        i = n - 1
+        while i > 0:
+            input_list[i] = input_list[i - 1]
+            i -= 1
+        input_list[0] = last
+
+print("Результат:", input_list)
