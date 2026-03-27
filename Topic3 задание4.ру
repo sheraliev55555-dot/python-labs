@@ -1,0 +1,11 @@
+
+n = int(input("Введите n: "))
+fib_sequence = []
+a, b = 0, 1
+count = 0
+while count < n:
+    fib_sequence.append(a)
+    a, b = b, a + b
+    count += 1
+print(f"Первые {n} чисел Фибоначчи:")
+print(", ".join(map(str, fib_sequence)))
