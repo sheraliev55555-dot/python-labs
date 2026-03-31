@@ -1,0 +1,30 @@
+import random
+import time
+
+def selection_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        min_idx = i
+        for j in range(i + 1, n):
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+    return arr
+
+array = [random.randint(1, 100) for _ in range(10)]
+print(f"Исходный массив: {array}")
+sorted_array = selection_sort(array.copy())
+print(f"Отсортированный массив: {sorted_array}")
+
+sizes = [100, 500, 1000, 5000, 10000]
+print("\n" + "="*60)
+print(f"{'Размер массива':<15} {'Время (сек)':<15} {'Теоретическое отношение':<20}")
+print("="*60)
+
+for size in sizes:
+    test_array = [random.randint(1, 10000) for _ in range(size)]
+    start_time = time.time()
+    selection_sort(test_array)
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print(f"{size:<15} {elapsed_time:<15.6f} O(n²)")
