@@ -1,0 +1,18 @@
+# Задача 1. Класс «Студент»
+
+class Student:
+    def __init__(self, name, group):
+        self.name = name
+        self.group = group
+        self.grades = []
+    
+    def add_grade(self, grade):
+        self.grades.append(grade)
+    
+    def average_grade(self):
+        if not self.grades:
+            return 0
+        return round(sum(self.grades) / len(self.grades), 2)
+    
+    def info(self):
+        print(f"Студент {self.name}, группа {self.group}, средний балл: {self.average_grade()}")
