@@ -1,0 +1,21 @@
+# Задание 2. Имитация банковского счёта
+
+balance = 0
+
+def deposit(amount):
+    global balance
+    balance += amount
+
+def withdraw(amount):
+    global balance
+    if amount > balance:
+        print("Недостаточно средств!")
+    else:
+        balance -= amount
+
+def get_balance():
+    return balance
+
+def reset_balance():
+    global balance
+    balance = 0
