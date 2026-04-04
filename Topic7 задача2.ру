@@ -1,0 +1,38 @@
+# Задача 2. Класс «Сотрудник»
+
+class Employee:
+    company_domain = "company.com"
+    
+    def __init__(self, name, position, salary):
+        self.name = name
+        self.position = position
+        self.salary = salary
+        self.__email = self._generate_email()
+    
+    def _generate_email(self):
+        parts = self.name.lower().split()
+        if len(parts) >= 2:
+            return f"{parts[0]}.{parts[1]}@{self.company_domain}"
+        return f"{parts[0]}@{self.company_domain}"
+    
+    @property
+    def salary(self):
+        return self._salary
+    
+    @salary.setter
+    def salary(self, value):
+        if value < 0:
+            raise ValueError("Зарплата не может быть меньше 0")
+        self._salary = value
+    
+    def raise_salary(self, percent):
+        self.salary = self.salary * (1 + percent / 100)
+    
+    @staticmethod
+    def validate_name(name):
+        return all(char.isalpha() or char.isspace() for char in name)
+    
+    @classmethod
+    def from_string(cls, data):
+        parts = data.split(',')
+        return cls(parts[0].strip(), parts[1].strip(), float(parts[2].strip()))
