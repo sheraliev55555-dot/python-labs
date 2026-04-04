@@ -1,0 +1,24 @@
+# Задача 1. Поиск и замена в текстовом файле
+
+def process_document():
+    try:
+        with open('document.txt', 'r', encoding='utf-8') as file:
+            content = file.read()
+        
+        word = 'дождь'
+        replacement = 'ливень'
+        
+        count = content.lower().count(word)
+        
+        import re
+        updated_content = re.sub(r'(?i)\b' + word + r'\b', replacement, content)
+        
+        with open('document_updated.txt', 'w', encoding='utf-8') as file:
+            file.write(updated_content)
+        
+        print(f"Количество заменённых слов: {count}")
+    
+    except FileNotFoundError:
+        print("Файл document.txt не найден!")
+
+process_document()
