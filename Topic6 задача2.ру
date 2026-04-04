@@ -1,0 +1,39 @@
+# Задача 2. Слияние файлов
+
+def merge_files():
+    try:
+        students = {}
+        with open('students.txt', 'r', encoding='utf-8') as f:
+            for line in f:
+                name = line.strip()
+                students[name] = None
+        
+        with open('scores.txt', 'r', encoding='utf-8') as f:
+            for line in f:
+                if ',' in line:
+                    name, score = line.strip().split(',')
+                    name = name.strip()
+                    score = int(score.strip())
+                    if name in students:
+                        students[name] = score
+        
+        total_score = 0
+        count = 0
+        
+        with open('report.txt', 'w', encoding='utf-8') as f:
+            for name, score in students.items():
+                if score is not None:
+                    f.write(f"{name}: {score} баллов\n")
+                    total_score += score
+                    count += 1
+            
+            if count > 0:
+                average = total_score // count
+                f.write(f"Средний балл: {average} баллов\n")
+        
+        print("Файл report.txt успешно создан!")
+    
+    except FileNotFoundError as e:
+        print(f"Ошибка: {e}")
+
+merge_files()
