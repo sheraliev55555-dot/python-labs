@@ -1,0 +1,35 @@
+# Задача 5. Шифрование файла
+
+def encrypt_file(input_file, output_file, shift):
+    try:
+        with open(input_file, 'r', encoding='utf-8') as f:
+            text = f.read()
+        
+        result = []
+        for char in text:
+            if 'а' <= char <= 'я' or 'А' <= char <= 'Я':
+                if 'а' <= char <= 'я':
+                    result.append(chr((ord(char) - ord('а') + shift) % 32 + ord('а')))
+                else:
+                    result.append(chr((ord(char) - ord('А') + shift) % 32 + ord('А')))
+            elif 'a' <= char <= 'z' or 'A' <= char <= 'Z':
+                if 'a' <= char <= 'z':
+                    result.append(chr((ord(char) - ord('a') + shift) % 26 + ord('a')))
+                else:
+                    result.append(chr((ord(char) - ord('A') + shift) % 26 + ord('A')))
+            else:
+                result.append(char)
+        
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write(''.join(result))
+        
+        print(f"Файл зашифрован в {output_file}")
+    
+    except FileNotFoundError:
+        print(f"Файл {input_file} не найден!")
+
+def decrypt_file(input_file, output_file, shift):
+    encrypt_file(input_file, output_file, -shift)
+
+encrypt_file('input.txt', 'encrypted.txt', 3)
+decrypt_file('encrypted.txt', 'decrypted.txt', 3)
