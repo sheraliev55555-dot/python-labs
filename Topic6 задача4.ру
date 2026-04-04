@@ -1,0 +1,87 @@
+# Задача 4. Телефонный справочник
+
+def add_contact(name, phone):
+    with open('contacts.txt', 'a', encoding='utf-8') as f:
+        f.write(f"{name},{phone}\n")
+    print("Контакт добавлен!")
+
+def search_contact(name):
+    try:
+        with open('contacts.txt', 'r', encoding='utf-8') as f:
+            for line in f:
+                if ',' in line:
+                    contact_name, phone = line.strip().split(',', 1)
+                    if contact_name.lower() == name.lower():
+                        print(f"Номер телефона: {phone}")
+                        return
+        print("Контакт не найден!")
+    except FileNotFoundError:
+        print("Справочник пуст!")
+
+def delete_contact(name):
+    try:
+        with open('contacts.txt', 'r', encoding='utf-8') as f:
+            contacts = f.readlines()
+        
+        found = False
+        with open('contacts.txt', 'w', encoding='utf-8') as f:
+            for line in contacts:
+                if ',' in line:
+                    contact_name, phone = line.strip().split(',', 1)
+                    if contact_name.lower() != name.lower():
+                        f.write(line)
+                    else:
+                        found = True
+        
+        if found:
+            print("Контакт удалён!")
+        else:
+            print("Контакт не найден!")
+    except FileNotFoundError:
+        print("Справочник пуст!")
+
+def show_all():
+    try:
+        with open('contacts.txt', 'r', encoding='utf-8') as f:
+            contacts = f.readlines()
+        
+        if not contacts:
+            print("Справочник пуст!")
+            return
+        
+        for line in contacts:
+            if ',' in line:
+                name, phone = line.strip().split(',', 1)
+                print(f"{name}: {phone}")
+    except FileNotFoundError:
+        print("Справочник пуст!")
+
+def menu():
+    while True:
+        print("\n1. Добавить контакт")
+        print("2. Найти контакт")
+        print("3. Удалить контакт")
+        print("4. Показать все контакты")
+        print("5. Выход")
+        
+        choice = input("Выберите действие: ")
+        
+        if choice == '1':
+            name = input("Введите имя: ")
+            phone = input("Введите телефон: ")
+            add_contact(name, phone)
+        elif choice == '2':
+            name = input("Введите имя: ")
+            search_contact(name)
+        elif choice == '3':
+            name = input("Введите имя: ")
+            delete_contact(name)
+        elif choice == '4':
+            show_all()
+        elif choice == '5':
+            print("До свидания!")
+            break
+        else:
+            print("Неверный выбор!")
+
+menu()
