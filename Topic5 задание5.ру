@@ -1,0 +1,15 @@
+# Задание 5. Счётчик вызовов с глобальной переменной
+
+count_a = 0
+count_b = 0
+
+def func_a():
+    global count_a
+    count_a += 1
+
+def func_b():
+    global count_b
+    count_b += 1
+
+def show_counts():
+    print(f"Функция A вызвана {count_a} раз(а), Функция B вызвана {count_b} раз(а)")
